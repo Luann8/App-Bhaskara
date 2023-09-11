@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Bhaskara</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        .logo {
+            max-width: 100px; /* Define a largura máxima da logo */
+            height: auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        /* Abas de Navegação */
+        .nav-tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .nav-button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .nav-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos para as abas de conteúdo */
+        .content-tab {
+            display: none;
+        }
+
+        .content-tab.active {
+            display: block;
+        }
+
+        /* Estilos para inputs e botões */
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .action-button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .action-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Mensagem de erro */
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        /* Espaço para a imagem no centro */
+        .image-container {
+            margin-top: 20px;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img class="logo" src="C:\Users\luann\Downloads\Imagem2 (2).png" alt="Logo da Calculadora">
+            <h1>Calculadora de Bhaskara</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Abas de Navegação -->
+        <div class="nav-tabs">
+            <button class="nav-button" onclick="mostrarAba('entrada')">Entrada</button>
+            <button class="nav-button" onclick="mostrarAba('resultado')">Resultado</button>
+            <button class="nav-button" onclick="mostrarAba('passos')">Passos</button>
+        </div>
+
+        <!-- Aba de Entrada -->
+        <div id="entrada" class="content-tab">
+            <label for="a">Coeficiente a:</label>
+            <input type="number" id="a">
+            <label for="b">Coeficiente b:</label>
+            <input type="number" id="b">
+            <label for="c">Coeficiente c:</label>
+            <input type="number" id="c">
+            <button class="action-button" onclick="calcularBhaskara()">Calcular</button>
+        </div>
+
+        <!-- Aba de Resultado -->
+        <div id="resultado" class="content-tab">
+            <h2>Resultado da Calculadora de Bhaskara</h2>
+            <div id="resultadoText"></div>
+        </div>
+
+        <!-- Aba de Passos -->
+        <div id="passos" class="content-tab">
+            <h2>Passos do Cálculo de Bhaskara</h2>
+            <ol>
+                <li>Calcular o discriminante (Δ): Δ = b² - 4ac.</li>
+                <li>Verificar o valor de Δ.</li>
+                <li>Se Δ > 0, calcular as raízes:</li>
+            </ol>
+            <div id="passosText"></div>
+        </div>
+
+        <!-- Espaço para a imagem no centro -->
+        <div class="image-container">
+            <img src="https://escolaeducacao.com.br/wp-content/uploads/2019/11/discriminante-bhascara.jpg" alt="Sua Imagem">
+        </div>
+    </div>
+
+    <footer>
+        <p>Calculadora de Bhaskara &copy; 2023 | Desenvolvida por Luann Pereira Mendes</p>
+    </footer>
+
+    <script>
+        function mostrarAba(aba) {
+            const abas = document.querySelectorAll('.content-tab');
+            abas.forEach((aba) => {
+                aba.classList.remove('active');
+            });
+
+            document.getElementById(aba).classList.add('active');
+        }
+
+        function calcularBhaskara() {
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+
+            const discriminante = b ** 2 - 4 * a * c;
+
+            if (discriminante > 0) {
+                const x1 = (-b + Math.sqrt(discriminante)) / (2 * a);
+                const x2 = (-b - Math.sqrt(discriminante)) / (2 * a);
+
+                document.getElementById('resultadoText').innerHTML = `Raízes reais: x1 = ${x1}, x2 = ${x2}`;
+                document.getElementById('passosText').innerHTML = `Δ = b² - 4ac = ${discriminante}`;
+                document.getElementById('passosText').classList.remove('error-message');
+            } else if (discriminante === 0) {
+                const x1 = -b / (2 * a);
+
+                document.getElementById('resultadoText').innerHTML = `Raiz real única: x1 = ${x1}`;
+                document.getElementById('passosText').innerHTML = `Δ = b² - 4ac = 0`;
+                document.getElementById('passosText').classList.remove('error-message');
+            } else {
+                document.getElementById('resultadoText').innerHTML = `A equação não possui raízes reais.`;
+                document.getElementById('passosText').innerHTML = `Δ = b² - 4ac = ${discriminante}`;
+                document.getElementById('passosText').classList.add('error-message');
+            }
+
+            mostrarAba('resultado');
+        }
+    </script>
+</body>
+</html>
