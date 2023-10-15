@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Bhaskara</title>
     <style>
+        
         body {
-            background-color: #f5f5f5;
+            background-color: #000000;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -69,6 +70,26 @@
             transition: background-color 0.3s ease-in-out;
         }
 
+        .nav-buttonr {
+            background-color: #03be51;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .nav-buttonp {
+            background-color: #ffe600;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
         .nav-button:hover {
             background-color: #0056b3;
         }
@@ -84,7 +105,7 @@
 
         /* Estilos para inputs e botões */
         input[type="number"] {
-            width: 100%;
+            width: 78%;
             padding: 10px;
             margin: 5px 0;
             border: 1px solid #ccc;
@@ -118,6 +139,7 @@
         }
 
         /* Rodapé */
+        
         footer {
             background-color: #333;
             color: white;
@@ -125,25 +147,26 @@
             padding: 10px 0;
             width: 100%;
         }
+    
     </style>
 </head>
 <body>
     <header>
         <div class="header-content">
-            <img class="logo" src="https://raw.githubusercontent.com/Luann8/App-Bhaskara/main/Imagem2%20(2).png?token=GHSAT0AAAAAACG3LP2PNFAHOP6BYUB5H6SQZH7TNJQ" alt="Logo da Calculadora">
             <h1>Calculadora de Bhaskara</h1>
         </div>
     </header>
-
+    
+    <img class="logo" src="https://th.bing.com/th/id/OIG.yhCMd_AtxxrZxacTqSVO?pid=ImgGn" alt="Logo da Calculadora">
     <div class="container">
         <!-- Abas de Navegação -->
         <div class="nav-tabs">
             <button class="nav-button" onclick="mostrarAba('entrada')">Entrada</button>
-            <button class="nav-button" onclick="mostrarAba('resultado')">Resultado</button>
-            <button class="nav-button" onclick="mostrarAba('passos')">Passos</button>
+            <button class="nav-buttonr" onclick="mostrarAba('resultado')">Resultado</button>
+            <button class="nav-buttonp" onclick="mostrarAba('passos')">Passos</button>
         </div>
 
-        <!-- Aba de Entrada -->
+        <br>
         <div id="entrada" class="content-tab">
             <label for="a">Coeficiente a:</label>
             <input type="number" id="a">
@@ -178,7 +201,7 @@
     </div>
 
     <footer>
-        <p>Calculadora de Bhaskara &copy; 2023 | Desenvolvida por Luann Pereira Mendes</p>
+        <p>Calculadora de Bhaskara &copy; 2023 | Desenvolvido por Luann Pereira Mendes</p>
     </footer>
 
     <script>
